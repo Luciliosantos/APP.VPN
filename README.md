@@ -1,15 +1,19 @@
 # TECH NET VPN — Android
 
-Aplicativo Android nativo em Kotlin + Jetpack Compose para importar configurações JSON.
+Aplicativo Android nativo em Kotlin + Jetpack Compose.
 
-## Implementado nesta primeira base
-- Estrutura Android nativa.
-- Importador inicial JSON (listas connections, configs, servers e content).
-- Modelo de conexão com SSH, SSL/TLS, WebSocket, HTTP Proxy, Payload, BHTTP e XHTTP.
-- Serviço Android VpnService registrado como ponto de integração.
+## Formato de configuração compatível
+- Metadados: Version, ReleaseNotes, Sms, UrlUpdate, CheckUser.
+- Servidores: Servers (Name, TYPE, FLAG, ServerIP, ServerPort, SSLPort, CheckUser).
+- Conexões: Networks (Name, FLAG, Payload, SNI, TlsIP, ProxyIP, ProxyPort, Info).
+- Portas UDP: Udp[].Porta.
+- Quantidade de Networks e servidores não é fixa; importa as entradas válidas encontradas no JSON.
 
-## Ainda não implementado
-Os motores de transporte e o encaminhamento real do tráfego pelo TUN ainda precisam ser integrados e testados. A interface não simula uma VPN conectada.
+## Implementado
+- Interface inicial.
+- Leitura do formato de configuração TECH NET VPN/TeleMax enviado pelo usuário.
+- Lista de conexões, identificação de protocolo pelo campo Info e exibição de SNI/proxy.
+- Serviço Android VpnService registrado.
 
-## Build
-Requer JDK 17, Android SDK API 35 e Gradle 8.9 ou superior.
+## Pendente
+Motores de transporte reais e encaminhamento TUN ainda não foram integrados. O app não simula conexão ativa.
