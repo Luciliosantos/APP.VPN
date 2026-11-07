@@ -1,6 +1,15 @@
 package br.com.technet.vpn
 
 import android.os.Bundle
+import android.content.Intent
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.IntentFilter
+import android.net.VpnService
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.RECEIVER_NOT_EXPORTED
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
@@ -37,6 +46,37 @@ private val GREEN = Color(0xFFB8F36B)
 private val MUTED = Color(0xFF91A1B8)
 
 class MainActivity : ComponentActivity() {
+    private var pendingHost = ""
+    private var pendingPort = 22
+    private var pendingUser = ""
+    private var pendingPass = ""
+    private var statusListener: ((String) -> Unit)? = null
+    private val statusReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            intent?.getStringExtra(VpnTunnelService.EXTRA_STATUS)?.let { statusListener?.invoke(it) }
+        }
+    }
+    override fun onStart() {
+        super.onStart()
+        ContextCompat.registerReceiver(this, statusReceiver, IntentFilter(VpnTunnelService.ACTION_STATUS), RECEIVER_NOT_EXPORTED)
+    }
+    override fun onStop() {
+        runCatching { unregisterReceiver(statusReceiver) }
+        statusListener = null
+        super.onStop()
+    }
+    private val vpnPermission = registerForActivityResult(StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_OK) startVpnTunnel()
+    }
+    private fun startVpnTunnel() {
+        val intent = Intent(this, VpnTunnelService::class.java)
+            .putExtra(VpnTunnelService.EXTRA_HOST, pendingHost)
+            .putExtra(VpnTunnelService.EXTRA_PORT, pendingPort)
+            .putExtra(VpnTunnelService.EXTRA_USER, pendingUser)
+            .putExtra(VpnTunnelService.EXTRA_PASS, pendingPass)
+        ContextCompat.startForegroundService(this, intent)
+        pendingPass = ""
+    }
     private var importHandler: ((String) -> Unit)? = null
     private val picker = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
         if (uri != null) contentResolver.openInputStream(uri)?.bufferedReader()?.use { importHandler?.invoke(it.readText()) }
@@ -53,6 +93,10 @@ class MainActivity : ComponentActivity() {
             var updatingConfig by remember { mutableStateOf(false) }
             var bhttpMessage by remember { mutableStateOf<String?>(null) }
             var bhttpTesting by remember { mutableStateOf(false) }
+            var login by remember { mutableStateOf("") }
+            var password by remember { mutableStateOf("") }
+            var vpnStatus by remember { mutableStateOf("OFFLINE") }
+            SideEffect { statusListener = { vpnStatus = it } }
             val scope = rememberCoroutineScope()
             importHandler = { raw ->
                 runCatching { VpnConfigParser.parse(raw) }
@@ -140,10 +184,10 @@ class MainActivity : ComponentActivity() {
                                     ToolItem("Importar config.json", "Carregar servidores e conexões") { picker.launch(arrayOf("application/json", "text/*", "application/octet-stream")) }
                                     ToolItem("Versão da configuração", profile?.version ?: "Não importada") {}
                                     ToolItem("Portas UDP", profile?.udpPorts?.joinToString(", ") ?: "Não informadas") {}
-                                    ToolItem("Motor de conexão", "Integração pendente — sem status falso") {}
+                                    ToolItem("Motor de conexão", "SSH + SOCKS5 + TUN (hev)") {}
                                     Text(message, color = MUTED, style = MaterialTheme.typography.bodySmall)
                                     Spacer(Modifier.weight(1f))
-                                    Text("BHTTP será ativado com o motor de transporte compatível.", color = GREEN, style = MaterialTheme.typography.bodySmall)
+                                    Text("A autenticação usa o login e a senha criados no painel.", color = GREEN, style = MaterialTheme.typography.bodySmall)
                                 }
                             }
                             else -> {
@@ -153,7 +197,7 @@ class MainActivity : ComponentActivity() {
                                             Text("PAINEL DE CONTROLE", color = MUTED, style = MaterialTheme.typography.labelSmall)
                                             Text("Sua conexão.", color = Color.White, style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
                                         }
-                                        Text("● OFFLINE", color = GREEN, fontWeight = FontWeight.Bold)
+                                        Text("● " + vpnStatus, color = if (vpnStatus == "CONECTADO") GREEN else MUTED, fontWeight = FontWeight.Bold)
                                     }
                                     Column(Modifier.fillMaxWidth().background(Brush.linearGradient(listOf(Color(0xFF173B55), Color(0xFF142238), CARD)), RoundedCornerShape(23.dp)).padding(19.dp)) {
                                         Text("PERFIL SELECIONADO", color = BLUE, style = MaterialTheme.typography.labelSmall)
@@ -162,7 +206,40 @@ class MainActivity : ComponentActivity() {
                                         Spacer(Modifier.height(8.dp))
                                         Text((active?.type?.name ?: "SEM PERFIL") + " • " + (active?.info ?: "IMPORTAR CONFIG"), color = BLUE)
                                         Spacer(Modifier.height(12.dp))
-                                        Text("O motor VPN ainda não está ativo nesta versão. O app não simula conexão.", color = MUTED, style = MaterialTheme.typography.bodySmall)
+                                        OutlinedTextField(
+                                            value = login, onValueChange = { login = it }, modifier = Modifier.fillMaxWidth(),
+                                            label = { Text("LOGIN DO PAINEL") }, singleLine = true, shape = RoundedCornerShape(12.dp)
+                                        )
+                                        OutlinedTextField(
+                                            value = password, onValueChange = { password = it }, modifier = Modifier.fillMaxWidth(),
+                                            label = { Text("SENHA DO PAINEL") }, singleLine = true,
+                                            visualTransformation = PasswordVisualTransformation(), shape = RoundedCornerShape(12.dp)
+                                        )
+                                        Text("Use o usuário e a senha criados no painel de gerenciamento.", color = MUTED, style = MaterialTheme.typography.bodySmall)
+                                        Button(
+                                            enabled = active != null && login.isNotBlank() && password.isNotBlank() && vpnStatus != "CONECTANDO",
+                                            onClick = {
+                                                val server = profile?.servers?.firstOrNull()
+                                                if (server == null) {
+                                                    vpnStatus = "SEM SERVIDOR"
+                                                } else {
+                                                    pendingHost = server.serverIp
+                                                    pendingPort = server.serverPort
+                                                    pendingUser = login.trim()
+                                                    pendingPass = password
+                                                    vpnStatus = "CONECTANDO"
+                                                    val prepare = VpnService.prepare(this@MainActivity)
+                                                    if (prepare != null) vpnPermission.launch(prepare) else startVpnTunnel()
+                                                }
+                                            }, modifier = Modifier.fillMaxWidth(),
+                                            colors = ButtonDefaults.buttonColors(containerColor = BLUE), shape = RoundedCornerShape(12.dp)
+                                        ) { Text(if (vpnStatus == "CONECTANDO") "CONECTANDO..." else "CONECTAR VPN", color = BG, fontWeight = FontWeight.Black) }
+                                        OutlinedButton(
+                                            onClick = {
+                                                startService(Intent(this@MainActivity, VpnTunnelService::class.java).setAction(VpnTunnelService.ACTION_STOP))
+                                                vpnStatus = "OFFLINE"
+                                            }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(12.dp)
+                                        ) { Text("DESCONECTAR") }
                                         if (active?.type == br.com.technet.vpn.data.TransportType.BHTTP) {
                                             Spacer(Modifier.height(10.dp))
                                             Text("Endpoint BHTTP: " + (active.bhttpHost ?: "não informado") + ":" + (active.bhttpPort?.toString() ?: "sem porta"), color = MUTED, style = MaterialTheme.typography.bodySmall)

@@ -18,11 +18,13 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions { jvmTarget = "17" }
+    kotlinOptions { jvmTarget = "17"; freeCompilerArgs += "-Xskip-metadata-version-check" }
     buildFeatures { compose = true }
 }
 dependencies {
     implementation(files("libs/libXray.aar"))
+    implementation(files("libs/hevtunnel-1.0.0.aar"))
+    implementation("org.connectbot:sshlib:2.2.50")
     implementation("androidx.core:core-ktx:1.15.0")
     implementation("androidx.activity:activity-compose:1.10.0")
     implementation(platform("androidx.compose:compose-bom:2025.02.00"))
