@@ -7,7 +7,7 @@
                 <ImageView android:background="@drawable/ic_banner" android:layout_width="100.0dip" android:layout_height="100.0dip" />
             </RelativeLayout>
         </RelativeLayout>
-        <TextView android:textSize="15.0sp" android:textStyle="bold" android:textColor="#ffffffff" android:gravity="center" android:id="@id/monsour_stats" android:paddingLeft="10.0dip" android:paddingRight="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="Desconectado" android:textScaleX="1.6" android:shadowColor="#ff000000" android:shadowDx="1.0" android:shadowDy="1.0" android:shadowRadius="1.0" />
+        <TextView android:textSize="23.0sp" android:textStyle="bold" android:textColor="#ffffffff" android:gravity="center" android:id="@id/monsour_stats" android:layout_width="150.0dip" android:layout_height="150.0dip" android:layout_marginTop="12.0dip" android:layout_marginBottom="12.0dip" android:text="VPN" android:clickable="true" android:focusable="true" android:elevation="10.0dip" android:shadowColor="#ff00d9ff" android:shadowDx="0.0" android:shadowDy="0.0" android:shadowRadius="14.0" />
         <LinearLayout android:gravity="center_horizontal" android:orientation="horizontal" android:padding="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
             <TextView android:textStyle="bold" android:textColor="#ffffffff" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="INSIRA SEUS DADOS" />
         </LinearLayout>
@@ -44,7 +44,7 @@
             </LinearLayout>
         </ScrollView>
         <LinearLayout android:gravity="center_horizontal" android:orientation="horizontal" android:padding="0.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip">
-            <Button android:textStyle="bold" android:textColor="#ffffffff" android:layout_gravity="center" android:id="@id/activity_starterButtonMain" android:background="@drawable/button_blue" android:layout_width="185.0dip" android:layout_height="50.0dip" android:layout_marginLeft="10.0dip" android:layout_marginTop="6.0dip" android:layout_marginRight="10.0dip" android:layout_marginBottom="6.0dip" android:text="@string/start" android:letterSpacing="0.1" />
+            <Button android:textStyle="bold" android:textColor="#ffffffff" android:layout_gravity="center" android:id="@id/activity_starterButtonMain" android:visibility="gone" android:background="@drawable/button_blue" android:layout_width="185.0dip" android:layout_height="50.0dip" android:layout_marginLeft="10.0dip" android:layout_marginTop="6.0dip" android:layout_marginRight="10.0dip" android:layout_marginBottom="6.0dip" android:text="@string/start" android:letterSpacing="0.1" />
             <ImageView android:id="@id/reloadIU" android:background="@drawable/button_blue" android:layout_width="40.0dip" android:layout_height="40.0dip" android:layout_marginTop="11.0dip" android:src="@drawable/ic_autorenew_black_24dp" android:tint="#ffffffff" android:layout_toRightOf="@id/activity_starterButtonMain" />
         </LinearLayout>
         <LinearLayout android:gravity="center_horizontal" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">

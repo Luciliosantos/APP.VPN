@@ -3702,6 +3702,10 @@
 
     iput-object v0, p0, Lcom/conecta4g/vpn/SocksHttpMainActivity;->status:Landroid/widget/TextView;
 
+    iget-object v0, p0, Lcom/conecta4g/vpn/SocksHttpMainActivity;->status:Landroid/widget/TextView;
+
+    invoke-virtual {v0, p0}, Landroid/widget/TextView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+
     const v0, 0x7f090030
 
     .line 238
@@ -6450,6 +6454,7 @@
         0x7f09002e -> :sswitch_3
         0x7f09002f -> :sswitch_2
         0x7f09003d -> :sswitch_1
+        0x7f0900cc -> :sswitch_1
         0x7f0900ed -> :sswitch_0
     .end sparse-switch
 .end method
