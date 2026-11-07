@@ -1,19 +1,18 @@
-# TECH NET VPN — Android
+# Conecta4G - APK extraído
 
-Aplicativo Android nativo em Kotlin + Jetpack Compose.
+Este repositório contém a extração técnica do APK Conecta4G enviado pelo proprietário.
 
-## Formato de configuração compatível
-- Metadados: Version, ReleaseNotes, Sms, UrlUpdate, CheckUser.
-- Servidores: Servers (Name, TYPE, FLAG, ServerIP, ServerPort, SSLPort, CheckUser).
-- Conexões: Networks (Name, FLAG, Payload, SNI, TlsIP, ProxyIP, ProxyPort, Info).
-- Portas UDP: Udp[].Porta.
-- Quantidade de Networks e servidores não é fixa; importa as entradas válidas encontradas no JSON.
+## Conteúdo
+- AndroidManifest.xml, recursos, assets e arquivos Smali recuperados com Apktool.
+- release/original/Conecta4G-base.apk: APK original fornecido.
+- release/original/Conecta4G-extracao.zip: pacote de extração inicial.
 
-## Implementado
-- Interface inicial.
-- Leitura do formato de configuração TECH NET VPN/TeleMax enviado pelo usuário.
-- Lista de conexões, identificação de protocolo pelo campo Info e exibição de SNI/proxy.
-- Serviço Android VpnService registrado.
+## Identificação
+- Package: com.conecta4g.vpn
+- Serviço VPN: com.romzkie.ultrasshservice.tunnel.vpn.TunnelVpnService
 
-## Pendente
-Motores de transporte reais e encaminhamento TUN ainda não foram integrados. O app não simula conexão ativa.
+## Limitação importante
+O APK não contém o projeto Android Studio original. A extração recupera manifesto, recursos, assets e bytecode em Smali; não recupera integralmente os fontes Java/Kotlin originais, histórico, comentários ou configuração Gradle. Para reconstruir um projeto Android compilável, será necessário fazer engenharia reversa adicional e recriar a estrutura Gradle.
+
+## Ferramenta
+Extração de recursos e bytecode realizada com Apktool.

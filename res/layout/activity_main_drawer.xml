@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout android:id="@id/drawerLayoutMain" android:fitsSystemWindows="true" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/activitymaindrawerLinearLayout1" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <com.google.android.material.appbar.AppBarLayout android:theme="@style/AppTheme.AppBarOverlay" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <androidx.appcompat.widget.Toolbar android:theme="@style/ToolbarTheme" android:id="@id/toolbar_main" android:background="@color/toolbar_bg" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="?actionBarSize" app:popupTheme="@style/AppTheme.PopupOverlay" app:titleTextAppearance="@style/Toolbar.TitleText" />
+            <com.google.android.material.tabs.TabLayout android:theme="@style/ToolbarTheme" android:id="@id/tablayout" android:background="@color/tab_bg" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="?actionBarSize" app:tabGravity="fill" app:tabIndicatorColor="@color/tab_text" app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget" app:tabTextColor="@color/tab_text" />
+        </com.google.android.material.appbar.AppBarLayout>
+        <androidx.viewpager.widget.ViewPager android:id="@id/viewpager" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/tab1" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                <include layout="@layout/activity_main" />
+            </LinearLayout>
+            <LinearLayout android:layout_gravity="end" android:orientation="vertical" android:id="@id/tab2" android:padding="6.0dip" android:layout_width="320.0dip" android:layout_height="fill_parent">
+                <include layout="@layout/activity_logs" />
+            </LinearLayout>
+        </androidx.viewpager.widget.ViewPager>
+        <androidx.drawerlayout.widget.DrawerLayout android:id="@id/drawerLayout" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <include android:visibility="gone" layout="@layout/activity_main" />
+            <LinearLayout android:layout_gravity="end" android:orientation="vertical" android:id="@id/activity_mainLogsDrawerLinear" android:background="@color/colorSecondaryBackground" android:padding="6.0dip" android:visibility="gone" android:layout_width="320.0dip" android:layout_height="fill_parent">
+                <androidx.recyclerview.widget.RecyclerView android:textColor="@color/colorText" android:gravity="start" android:id="@id/recyclerDrawerView" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_alignParentLeft="true" />
+            </LinearLayout>
+        </androidx.drawerlayout.widget.DrawerLayout>
+    </LinearLayout>
+    <com.google.android.material.navigation.NavigationView android:layout_gravity="start" android:id="@id/drawerNavigationView" android:layout_width="wrap_content" android:layout_height="fill_parent" app:headerLayout="@layout/nav_header" app:itemIconTint="?colorPrimary" app:menu="@menu/navigation_menu" />
+</androidx.drawerlayout.widget.DrawerLayout>

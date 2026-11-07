@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:theme="@style/AppAlertDialog" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="48.0dip" android:layout_marginBottom="48.0dip" android:overScrollMode="ifContentScrolls"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:paddingLeft="?dialogPreferredPadding" android:paddingTop="@dimen/alert_def_padding" android:paddingRight="?dialogPreferredPadding" android:paddingBottom="@dimen/alert_def_padding" android:layout_width="fill_parent" android:layout_height="wrap_content" android:paddingStart="?dialogPreferredPadding" android:paddingEnd="?dialogPreferredPadding">
+        <TextView android:textColor="?android:textColorSecondary" android:id="@android:id/message" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/alert_def_padding" style="?android:textAppearanceSmall" />
+        <EditText android:textColor="?android:textColorSecondary" android:id="@android:id/edit" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    </LinearLayout>
+</ScrollView>

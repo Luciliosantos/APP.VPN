@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include android:layout_width="fill_parent" android:layout_height="wrap_content" layout="@layout/toolbar_main" />
+    <ScrollView android:gravity="center|top" android:background="@color/colorPrimaryBackground" android:padding="5.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <LinearLayout android:orientation="vertical" android:id="@id/activity_config_exportMainLinearLayout" android:padding="10.0dip" android:focusable="true" android:focusableInTouchMode="true" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <LinearLayout android:orientation="vertical" android:background="@drawable/background_rounded" android:padding="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputEditText android:textColor="@color/colorText" android:id="@id/activity_config_exportNomeEdit" android:layout_width="fill_parent" android:layout_height="wrap_content" android:hint="@string/name_file" android:ems="10" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <Button android:textColor="#ffffffff" android:layout_gravity="right" android:id="@id/activity_config_exportButton" android:background="@drawable/button_blue" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/export_button" />
+            </LinearLayout>
+            <TextView android:textStyle="bold" android:background="@color/colorSecondaryBackground" android:padding="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="@string/title_security" />
+            <androidx.appcompat.widget.AppCompatCheckBox android:textColor="@color/colorText" android:id="@id/activity_config_exportProtegerCheck" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="3.0dip" android:hint="@string/check_protect" />
+            <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip">
+                <TextView android:textStyle="bold" android:background="@color/colorSecondaryBackground" android:padding="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/title_extra" />
+                <androidx.appcompat.widget.AppCompatCheckBox android:textColor="@color/colorText" android:id="@id/activity_config_exportBlockRootCheck" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="5.0dip" android:hint="@string/check_block_root" />
+                <androidx.appcompat.widget.AppCompatCheckBox android:textColor="@color/colorText" android:id="@id/activity_config_exportShowLoginScreenCheck" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="5.0dip" android:hint="@string/check_show_login_start" />
+                <LinearLayout android:orientation="horizontal" android:paddingBottom="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                    <androidx.appcompat.widget.AppCompatCheckBox android:textColor="@color/colorText" android:id="@id/activity_config_exportValidadeCheck" android:layout_width="wrap_content" android:layout_height="wrap_content" android:hint="@string/check_date_valid" />
+                    <TextView android:textStyle="bold" android:gravity="center" android:id="@id/activity_config_exportValidadeText" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_marginLeft="5.0dip" android:text="(Unknown)" />
+                </LinearLayout>
+                <com.google.android.material.textfield.TextInputLayout android:id="@id/activity_config_exportLayoutMensagemEdit" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputEditText android:textColor="@color/colorText" android:gravity="center|left|top" android:id="@id/activity_config_exportMensagemEdit" android:layout_width="fill_parent" android:layout_height="wrap_content" android:hint="@string/input_note_msg" android:ems="20" android:inputType="textLongMessage|textMultiLine" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

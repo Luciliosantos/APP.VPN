@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.preference.PreferenceCategory android:title="@string/category_advanced_settings">
+        <androidx.preference.CheckBoxPreference android:title="@string/title_mode_debug" android:key="modeDebug" android:summary="@string/summary_mode_debug" />
+        <androidx.preference.ListPreference android:entries="@array/pref_maxThreads_option_labels" android:title="@string/title_number_max_threads" android:key="numberMaxThreadSocks" android:summary="@string/summary_number_max_threads" android:defaultValue="0th" android:entryValues="@array/pref_maxThreads_option_values" />
+        <androidx.preference.CheckBoxPreference android:title="@string/title_tethering_subnet" android:key="tetherSubnet" android:summary="@string/summary_tethering_subnet" />
+        <androidx.preference.CheckBoxPreference android:title="@string/title_disable_delay_ssh" android:key="disableDelaySSH" android:summary="@string/summary_disable_delay_ssh" android:defaultValue="true" />
+        <androidx.preference.CheckBoxPreference android:title="@string/title_wakelock_service" android:key="wakelock" android:summary="@string/summary_wakelock_service" android:defaultValue="true" />
+    </androidx.preference.PreferenceCategory>
+    <androidx.preference.PreferenceCategory android:title="@string/category_filter_apps">
+        <androidx.preference.CheckBoxPreference android:title="@string/title_filter_apps" android:key="filterApps" />
+        <androidx.preference.CheckBoxPreference android:title="@string/title_bypass_mode" android:key="filterBypassMode" android:summary="@string/summary_bypass_modo" />
+        <androidx.preference.EditTextPreference android:singleLine="true" android:title="@string/title_apps_list" android:key="filterAppsList" android:summary="@string/summary_apps_list" android:dialogMessage="" android:dialogLayout="@layout/pref_dialog_edittext_fix" />
+    </androidx.preference.PreferenceCategory>
+</androidx.preference.PreferenceScreen>

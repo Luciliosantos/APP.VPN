@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@drawable/fundo" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <include layout="@layout/activity_home" />
+    <LinearLayout android:gravity="bottom|center" android:orientation="vertical" android:id="@id/activity_mainLinearLayout" android:focusable="true" android:focusableInTouchMode="true" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <LinearLayout android:orientation="vertical" android:id="@id/activity_mainInputPayloadLinearLayout" android:background="@drawable/box_gradient" android:padding="10.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText android:textColor="@color/colorText" android:id="@id/activity_mainInputPayloadEditText" android:layout_width="fill_parent" android:layout_height="wrap_content" android:maxHeight="100.0dip" android:hint="@string/payload" android:ems="20" android:inputType="textLongMessage|textMultiLine" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+        <LinearLayout android:orientation="vertical" android:id="@id/activity_ssl_layout" android:background="@drawable/box_gradient" android:padding="10.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText android:textColor="@color/colorText" android:id="@id/activity_sni_edit" android:layout_width="fill_parent" android:layout_height="wrap_content" android:maxHeight="100.0dip" android:hint="@string/sni" android:ems="20" android:inputType="textLongMessage|textMultiLine" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+        <LinearLayout android:gravity="right" android:orientation="horizontal" android:padding="5.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <TextView android:textStyle="bold" android:textColor="#ff00baff" android:id="@id/activity_mainAutorText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Slipk Projects" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center" android:layout_gravity="bottom" android:orientation="vertical" android:background="@drawable/background_rounded" android:padding="10.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" android:layout_alignParentLeft="true" android:layout_alignParentStart="true">
+            <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <LinearLayout android:orientation="vertical" android:padding="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                    <TextView android:textAppearance="?android:textAppearanceSmall" android:textColor="#ff000000" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tunnel Mode" />
+                    <RadioGroup android:gravity="center" android:orientation="horizontal" android:id="@id/modeGroup" android:layout_width="fill_parent" android:layout_height="wrap_content" android:breakStrategy="balanced">
+                        <RadioButton android:id="@id/ssh_mode" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="SSH Mode" android:layout_weight="1.0" />
+                        <RadioButton android:id="@id/ssl_mode" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="SSL Mode" android:layout_weight="1.0" />
+                    </RadioGroup>
+                    <TextView android:textColor="#ff000000" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Select Server" />
+                    <Spinner android:id="@id/serverSpinner" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout android:orientation="vertical" android:paddingLeft="10.0dip" android:paddingRight="10.0dip" android:paddingBottom="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                    <TextView android:textColor="#ff000000" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Select Payload" />
+                    <Spinner android:id="@id/payloadSpinner" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+                </LinearLayout>
+                <androidx.appcompat.widget.SwitchCompat android:layout_gravity="right" android:id="@id/activity_mainCustomPayloadSwitch" android:layout_width="wrap_content" android:layout_height="wrap_content" android:hint="Custom Payload" />
+            </LinearLayout>
+            <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="vertical" android:id="@id/activity_mainInputPasswordLayout" android:paddingLeft="20.0dip" android:paddingTop="10.0dip" android:paddingRight="20.0dip" android:paddingBottom="5.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <LinearLayout android:gravity="center" android:orientation="horizontal" android:paddingBottom="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="10.0dip">
+                    <TextView android:textSize="18.0sp" android:textStyle="bold" android:textColor="@color/colorText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/title_login_main" />
+                </LinearLayout>
+                <com.google.android.material.textfield.TextInputLayout android:layout_gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputEditText android:textColor="@color/colorText" android:id="@id/activity_mainInputPasswordUserEdit" android:layout_width="fill_parent" android:layout_height="wrap_content" android:hint="@string/auth_username" android:ems="20" android:singleLine="true" android:drawableStart="@drawable/ic_person_black_24dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <RelativeLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="4.0dip" android:layout_marginTop="4.0dip" android:layout_marginRight="4.0dip" android:layout_marginBottom="4.0dip">
+                    <com.google.android.material.textfield.TextInputLayout android:id="@id/fragment_userpassTextInputLayout" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                        <com.google.android.material.textfield.TextInputEditText android:textColor="@color/colorText" android:id="@id/activity_mainInputPasswordPassEdit" android:layout_width="fill_parent" android:layout_height="wrap_content" android:hint="@string/password" android:ems="20" android:singleLine="true" android:inputType="textPassword" android:drawableStart="@drawable/ic_lock_black_24dp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignEnd="@id/fragment_userpassTextInputLayout">
+                        <ImageButton android:layout_gravity="right" android:id="@id/activity_mainInputShowPassImageButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_visibility_off_black_24dp" android:hint="@string/show_password" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <Button android:textStyle="bold" android:textColor="#ffffffff" android:layout_gravity="center" android:id="@id/activity_starterButtonMain" android:background="@drawable/button_blue" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_marginRight="20.0dip" android:text="@string/start" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/activity_mainMetodoConexaoLayout" android:background="@color/colorSecondaryBackground" android:padding="5.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="3.0dip">
+            <TextView android:textStyle="bold" android:id="@id/activity_mainMetodoConexaoText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/method_connection" />
+            <RadioGroup android:gravity="center" android:orientation="horizontal" android:id="@id/activity_mainMetodoConexaoRadio" android:layout_width="fill_parent" android:layout_height="wrap_content" android:breakStrategy="balanced">
+                <androidx.appcompat.widget.AppCompatRadioButton android:id="@id/activity_mainSSHDirectRadioButton" android:padding="5.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:hint="SSH DIRECT" />
+                <androidx.appcompat.widget.AppCompatRadioButton android:id="@id/activity_mainSSHProxyRadioButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:hint="SSH + PROXY" />
+                <androidx.appcompat.widget.AppCompatRadioButton android:id="@id/activity_mainSSHSSLRadioButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:hint="SSH + SSL" />
+            </RadioGroup>
+        </LinearLayout>
+        <LinearLayout android:gravity="center_horizontal" android:orientation="horizontal" android:id="@id/activity_mainInputProxyLayout" android:background="@color/colorSecondaryBackground" android:padding="5.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="3.0dip">
+            <LinearLayout android:layout_gravity="start" android:orientation="vertical" android:paddingLeft="10.0dip" android:paddingRight="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <TextView android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/proxy_remote" />
+                <TextView android:id="@id/activity_mainProxyText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/no_value" />
+            </LinearLayout>
+            <LinearLayout android:layout_gravity="right" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                <ImageView android:layout_gravity="end" android:layout_width="30.0dip" android:layout_height="fill_parent" android:src="@drawable/ic_mode_edit_black_48dp" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout android:orientation="vertical" android:id="@id/activity_mainMensagemConfigLinearLayout" android:background="@drawable/background_rounded" android:padding="10.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="5.0dip">
+            <TextView android:autoLink="web" android:id="@id/activity_mainMensagemConfigTextView" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

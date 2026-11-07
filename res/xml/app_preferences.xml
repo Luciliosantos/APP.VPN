@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen android:key="screenMain"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.preference.PreferenceCategory android:title="@string/category_forward_udp">
+        <androidx.preference.SwitchPreferenceCompat android:title="@string/title_forward_udp" android:key="udpForward" android:summary="@string/summary_forward_udp" />
+        <com.conecta4g.vpn.view.SummaryEditTextPreference android:singleLine="true" android:title="@string/title_resolver_udp" android:key="udpResolver" android:summary="@string/summary_resolver_udp" android:dialogMessage="" android:dialogLayout="@layout/pref_dialog_edittext_fix" />
+    </androidx.preference.PreferenceCategory>
+    <androidx.preference.PreferenceCategory android:title="Notificação de velocidade de rede">
+        <androidx.preference.SwitchPreferenceCompat android:title="@string/title_speedmeter" android:key="speed_meter" android:summary="@string/summary_speedmeter" android:defaultValue="true" />
+    </androidx.preference.PreferenceCategory>
+    <androidx.preference.PreferenceCategory android:title="Conexão">
+        <androidx.preference.SwitchPreferenceCompat android:title="@string/title_sshcompres" android:key="data_compression" android:summary="@string/summary_sshcompres" android:defaultValue="true" />
+        <androidx.preference.CheckBoxPreference android:title="@string/title_tlsversion" android:key="tls_version" android:summary="@string/summary_tlsversion" />
+    </androidx.preference.PreferenceCategory>
+    <androidx.preference.PreferenceCategory android:title="@string/category_forward_dns">
+        <androidx.preference.SwitchPreferenceCompat android:title="@string/title_forward_dns" android:key="dnsForward" android:summary="@string/summary_forward_dns" />
+        <com.conecta4g.vpn.view.SummaryEditTextPreference android:singleLine="true" android:title="@string/dns_1" android:key="dnsResolver" android:summary="8.8.8.8" android:dialogMessage="@string/dns_1_summary" android:dialogLayout="@layout/pref_dialog_edittext_fix" />
+        <com.conecta4g.vpn.view.SummaryEditTextPreference android:singleLine="true" android:title="@string/dns_2" android:key="udpResolver2" android:summary="8.8.4.4" android:dialogMessage="@string/dns_2_summary" android:dialogLayout="@layout/pref_dialog_edittext_fix" />
+    </androidx.preference.PreferenceCategory>
+    <androidx.preference.PreferenceCategory android:title="Auto Pinger">
+        <androidx.preference.SwitchPreferenceCompat android:title="@string/title_autopinger" android:key="auto_ping" android:summary="@string/summary_autopinger" />
+        <com.conecta4g.vpn.view.SummaryEditTextPreference android:title="Ping Server" android:key="ping_server" android:summary="Set ping server" android:dependency="auto_ping" android:defaultValue="clients3.google.com" android:dialogLayout="@layout/pref_dialog_edittext_fix" />
+    </androidx.preference.PreferenceCategory>
+    <androidx.preference.PreferenceCategory android:title="@string/category_settings_adicionais">
+        <com.conecta4g.vpn.view.SummaryEditTextPreference android:singleLine="true" android:maxLength="3" android:title="@string/title_ping_time" android:key="pingerSSH" android:summary="@string/no_value" android:dialogLayout="@layout/pref_dialog_number" />
+        <androidx.preference.SwitchPreferenceCompat android:title="@string/title_auto_clear_log" android:key="autoClearLogs" android:summary="@string/summary_auto_clear_log" />
+        <androidx.preference.SwitchPreferenceCompat android:title="@string/title_hide_log" android:key="hideLog" android:summary="@string/summary_hide_log" />
+    </androidx.preference.PreferenceCategory>
+    <androidx.preference.PreferenceCategory android:title="App Theme">
+        <androidx.preference.ListPreference android:entries="@array/pref_modoNoturno_option_labels" android:title="Theme" android:key="modeNight" android:defaultValue="off" android:entryValues="@array/pref_modoNoturno_option_values" />
+    </androidx.preference.PreferenceCategory>
+    <androidx.preference.PreferenceCategory android:title="@string/category_user_interface">
+        <androidx.preference.ListPreference android:entries="@array/pref_idioma_option_labels" android:title="@string/title_language" android:key="idioma" android:defaultValue="default" android:entryValues="@array/pref_idioma_option_values" />
+    </androidx.preference.PreferenceCategory>
+    <androidx.preference.Preference android:title="@string/category_advanced_settings" android:key="screenAdvancedSettings" app:fragment="com.conecta4g.vpn.preference.SettingsAdvancedPreference" />
+</androidx.preference.PreferenceScreen>

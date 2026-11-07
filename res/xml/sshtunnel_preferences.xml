@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.preference.PreferenceCategory android:title="SSH Tunnel">
+        <com.conecta4g.vpn.view.SummaryEditTextPreference android:singleLine="true" android:title="@string/ssh_server" android:key="sshServer" android:summary="@string/no_value" android:dialogMessage="" android:dialogLayout="@layout/pref_dialog_edittext_fix" />
+        <com.conecta4g.vpn.view.SummaryEditTextPreference android:singleLine="true" android:maxLength="5" android:title="@string/ssh_port" android:key="sshPort" android:summary="@string/no_value" android:dialogLayout="@layout/pref_dialog_number" />
+    </androidx.preference.PreferenceCategory>
+    <androidx.preference.PreferenceCategory android:title="@string/title_auth">
+        <com.conecta4g.vpn.view.SummaryEditTextPreference android:singleLine="true" android:title="@string/auth_username" android:key="sshUser" android:summary="@string/no_value" android:dialogMessage="" android:dialogLayout="@layout/pref_dialog_edittext_fix" />
+        <com.conecta4g.vpn.view.PasswordEditTextPreference android:singleLine="true" android:title="@string/password" android:key="sshPass" android:summary="@string/no_value" android:dialogMessage="" android:dialogLayout="@layout/pref_dialog_edittext_fix" />
+    </androidx.preference.PreferenceCategory>
+    <androidx.preference.PreferenceCategory android:title="@string/category_forward_port">
+        <com.conecta4g.vpn.view.SummaryEditTextPreference android:singleLine="true" android:maxLength="5" android:title="@string/ssh_porta_local" android:key="sshPortaLocal" android:summary="1080" android:defaultValue="1080" android:dialogLayout="@layout/pref_dialog_number" />
+    </androidx.preference.PreferenceCategory>
+</androidx.preference.PreferenceScreen>

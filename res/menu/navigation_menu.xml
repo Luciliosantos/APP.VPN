@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Ajustes">
+        <menu>
+            <group android:id="@id/grupo1">
+                <item android:icon="@drawable/ic_wifi_tethering_black_24dp" android:id="@id/miPhoneConfg" android:title="@string/network_mobile" />
+                <item android:icon="@drawable/ic_settings" android:id="@id/miSettings" android:title="@string/settings" />
+                <item android:icon="@drawable/apn" android:id="@id/APNsettings" android:title="Config de APN" />
+                <item android:icon="@drawable/bateria" android:id="@id/BATTERY_OPTIMIZATION" android:title="Otimizar Bateria" />
+            </group>
+        </menu>
+    </item>
+    <item android:title="Contatos">
+        <menu>
+            <group android:id="@id/grupo2">
+                <item android:icon="@drawable/ic_bug_report_black_24dp" android:id="@id/miSendFeedback" android:title="Feedback" />
+                <item android:icon="@drawable/ic_person_black_24dp" android:id="@id/contact" android:title="Contato" />
+                <item android:icon="@drawable/termos" android:id="@id/termos" android:title="Termos de Uso" />
+            </group>
+        </menu>
+    </item>
+</menu>

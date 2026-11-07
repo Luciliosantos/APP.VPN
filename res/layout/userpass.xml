@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:theme="@style/AppAlertDialogLogin" android:orientation="vertical" android:background="@drawable/border4" android:padding="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:htext="http://schemas.android.com/apk/res-auto" xmlns:ls="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout android:orientation="vertical" android:background="@drawable/border4" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="5.0dip">
+        <RelativeLayout android:id="@id/h_u_l" android:background="@drawable/h_spin_shp1" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_margin="5.0dip" android:layout_marginTop="12.0dip">
+            <com.google.android.material.textfield.TextInputEditText android:textSize="14.0sp" android:textColorHint="#ff000000" android:id="@id/username" android:background="@null" android:paddingLeft="5.0dip" android:nextFocusDown="@id/HarliePasss" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="40.0dip" android:hint="Username" android:singleLine="true" android:layout_alignParentRight="true" android:layout_centerInParent="true" android:inputType="text" android:imeOptions="actionUnspecified|normal" />
+            <ImageView android:layout_width="29.0dip" android:layout_height="29.0dip" android:layout_margin="10.0dip" android:src="@drawable/h_acnt" android:tint="@color/h_c" />
+        </RelativeLayout>
+        <TextView android:textSize="10.0sp" android:textStyle="italic" android:textColor="#ff000000" android:background="@drawable/ic_gaming" android:padding="2.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="25.0dip" android:layout_marginTop="-4.0dip" android:text="Username" />
+    </RelativeLayout>
+    <RelativeLayout android:background="@drawable/border4" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <RelativeLayout android:gravity="center" android:id="@id/h_p_l" android:background="@drawable/h_spin_shp1" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_margin="5.0dip" android:layout_marginTop="12.0dip">
+            <com.google.android.material.textfield.TextInputEditText android:textSize="14.0sp" android:textColorHint="#ff000000" android:id="@id/password" android:background="@null" android:paddingLeft="5.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="40.0dip" android:hint="Password" android:singleLine="true" android:layout_alignParentLeft="true" android:layout_centerInParent="true" android:inputType="textPassword" />
+            <ImageView android:layout_width="29.0dip" android:layout_height="29.0dip" android:layout_margin="10.0dip" android:src="@drawable/h_pass" android:tint="@color/h_c" />
+            <ImageButton android:layout_gravity="right" android:id="@id/show_password" android:layout_width="wrap_content" android:layout_height="fill_parent" android:src="@drawable/ic_visibility_black_24dp" android:hint="@string/show_password" android:layout_alignEnd="@id/password" />
+        </RelativeLayout>
+        <TextView android:textSize="10.0sp" android:textStyle="italic" android:textColor="#ff000000" android:background="@drawable/ic_gaming" android:padding="2.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="25.0dip" android:layout_marginTop="-4.0dip" android:text="Password" />
+    </RelativeLayout>
+    <CheckBox android:textColor="#ff000000" android:id="@id/save_password" android:background="@drawable/border4" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="8.0dip" android:layout_marginTop="4.0dip" android:layout_marginRight="8.0dip" android:layout_marginBottom="16.0dip" android:tint="@color/h_c" android:text="@string/save_password" />
+</LinearLayout>

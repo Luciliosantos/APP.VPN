@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppAlertDialog" parent="@style/Theme.AppCompat.Dialog.Alert">
+        <item name="android:textColorSecondary">@color/textColorSecondary</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textColorHint">@color/colorText</item>
+        <item name="android:background">@color/colorSecondaryBackground</item>
+        <item name="buttonTint">@color/colorText</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="AppTheme" parent="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:textSize">15.0sp</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textColorHint">@color/colorText</item>
+        <item name="android:navigationBarColor">@color/colorSecondaryBackground</item>
+        <item name="alertDialogTheme">@style/AppAlertDialog</item>
+        <item name="buttonTint">@color/colorText</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorSecondary</item>
+        <item name="preferenceTheme">@style/AppPreference</item>
+    </style>
+    <style name="AppTheme.PopupOverlay" parent="@style/ThemeOverlay.AppCompat.Dark" />
+    <style name="Theme.AppCompat.DayNight" parent="@style/Theme.AppCompat" />
+    <style name="Theme.AppCompat.DayNight.DarkActionBar" parent="@style/Theme.AppCompat" />
+    <style name="Theme.AppCompat.DayNight.Dialog" parent="@style/Theme.AppCompat.Dialog" />
+    <style name="Theme.AppCompat.DayNight.Dialog.Alert" parent="@style/Theme.AppCompat.Dialog.Alert" />
+    <style name="Theme.AppCompat.DayNight.Dialog.MinWidth" parent="@style/Theme.AppCompat.Dialog.MinWidth" />
+    <style name="Theme.AppCompat.DayNight.DialogWhenLarge" parent="@style/Theme.AppCompat.DialogWhenLarge" />
+    <style name="Theme.AppCompat.DayNight.NoActionBar" parent="@style/Theme.AppCompat.NoActionBar" />
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="actionMenuTextColor">@android:color/holo_green_light</item>
+        <item name="colorAccent">@color/gray</item>
+        <item name="colorControlActivated">@color/blue</item>
+        <item name="colorControlHighlight">@color/gray_light</item>
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+</resources>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:card_view="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:gravity="center|top" android:orientation="vertical" android:id="@id/activity_mainLinearLayout" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="100.0dip" android:layout_marginLeft="5.0dip" android:layout_marginTop="5.0dip" android:layout_marginRight="5.0dip" android:layout_centerInParent="true">
+            <RelativeLayout android:layout_width="100.0dip" android:layout_height="100.0dip" android:layout_centerInParent="true">
+                <ImageView android:background="@drawable/ic_banner" android:layout_width="100.0dip" android:layout_height="100.0dip" />
+            </RelativeLayout>
+        </RelativeLayout>
+        <TextView android:textSize="15.0sp" android:textStyle="bold" android:textColor="#ffffffff" android:gravity="center" android:id="@id/monsour_stats" android:paddingLeft="10.0dip" android:paddingRight="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="Desconectado" android:textScaleX="1.6" android:shadowColor="#ff000000" android:shadowDx="1.0" android:shadowDy="1.0" android:shadowRadius="1.0" />
+        <LinearLayout android:gravity="center_horizontal" android:orientation="horizontal" android:padding="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <TextView android:textStyle="bold" android:textColor="#ffffffff" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="INSIRA SEUS DADOS" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="vertical" android:id="@id/activity_mainInputPasswordLayout" android:paddingLeft="20.0dip" android:paddingRight="20.0dip" android:paddingBottom="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <RelativeLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="5.0dip">
+                <RelativeLayout android:id="@id/h_u_l" android:background="@drawable/h_spin_shp1" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_marginTop="5.0dip" android:layout_marginBottom="5.0dip" android:layout_marginStart="5.0dip" android:layout_marginEnd="5.0dip">
+                    <com.google.android.material.textfield.TextInputEditText android:textSize="14.0sp" android:textColorHint="#ff000000" android:id="@id/activity_mainInputPasswordUserEdit" android:background="@null" android:paddingLeft="5.0dip" android:nextFocusDown="@id/HarliePasss" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="40.0dip" android:layout_marginRight="-2.0dip" android:hint="Usuário" android:singleLine="true" android:layout_alignParentRight="true" android:layout_centerHorizontal="true" android:inputType="text" android:imeOptions="actionUnspecified|normal" />
+                    <ImageView android:layout_width="29.0dip" android:layout_height="29.0dip" android:layout_marginLeft="10.0dip" android:layout_marginTop="10.0dip" android:layout_marginRight="10.0dip" android:layout_marginBottom="10.0dip" android:src="@drawable/h_acnt" android:tint="@color/h_c" android:layout_marginStart="10.0dip" android:layout_marginEnd="10.0dip" />
+                    <LinearLayout android:gravity="center_horizontal" android:orientation="horizontal" android:padding="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </RelativeLayout>
+            <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <RelativeLayout android:gravity="center" android:background="@drawable/h_spin_shp1" android:layout_width="fill_parent" android:layout_height="50.0dip" android:layout_margin="5.0dip" android:layout_marginTop="12.0dip">
+                    <com.google.android.material.textfield.TextInputEditText android:textSize="14.0sp" android:textColorHint="#ff000000" android:id="@id/activity_mainInputPasswordPassEdit" android:background="@null" android:paddingLeft="5.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="40.0dip" android:hint="Senha" android:singleLine="true" android:layout_alignParentLeft="true" android:layout_centerInParent="true" android:inputType="textPassword" />
+                    <ImageView android:layout_width="29.0dip" android:layout_height="29.0dip" android:layout_marginTop="10.0dip" android:layout_marginBottom="10.0dip" android:src="@drawable/h_pass" android:tint="@color/h_c" android:layout_marginStart="10.0dip" android:layout_marginEnd="10.0dip" />
+                    <ImageButton android:layout_gravity="right" android:id="@id/activity_mainInputShowPassImageButton" android:background="@android:color/transparent" android:padding="10.0dip" android:layout_width="wrap_content" android:layout_height="fill_parent" android:src="@drawable/ic_visibility_black_24dp" android:hint="@string/show_password" android:layout_alignRight="@id/activity_mainInputPasswordPassEdit" android:layout_alignEnd="@id/activity_mainInputPasswordPassEdit" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </LinearLayout>
+        <ScrollView android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <LinearLayout android:orientation="vertical" android:background="@android:color/transparent" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" android:layout_marginBottom="3.0dip">
+                <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+                    <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                        <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                            <RelativeLayout android:gravity="center" android:orientation="vertical" android:id="@id/ca1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1.0">
+                                <Spinner android:gravity="center" android:id="@id/serverSpinner" android:background="@drawable/spinner2" android:paddingLeft="15.0dip" android:paddingRight="10.0dip" android:layout_width="fill_parent" android:layout_height="55.0dip" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" android:layout_marginBottom="3.0dip" android:spinnerMode="dialog" />
+                            </RelativeLayout>
+                            <RelativeLayout android:gravity="center" android:orientation="vertical" android:id="@id/ca3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1.0">
+                                <Spinner android:gravity="center" android:id="@id/payloadSpinner" android:background="@drawable/spinner2" android:paddingLeft="15.0dip" android:paddingRight="10.0dip" android:layout_width="fill_parent" android:layout_height="55.0dip" android:layout_marginLeft="5.0dip" android:layout_marginRight="5.0dip" android:layout_marginBottom="3.0dip" android:spinnerMode="dialog" />
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+        <LinearLayout android:gravity="center_horizontal" android:orientation="horizontal" android:padding="0.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip">
+            <Button android:textStyle="bold" android:textColor="#ffffffff" android:layout_gravity="center" android:id="@id/activity_starterButtonMain" android:background="@drawable/button_blue" android:layout_width="185.0dip" android:layout_height="50.0dip" android:layout_marginLeft="10.0dip" android:layout_marginTop="6.0dip" android:layout_marginRight="10.0dip" android:layout_marginBottom="6.0dip" android:text="@string/start" android:letterSpacing="0.1" />
+            <ImageView android:id="@id/reloadIU" android:background="@drawable/button_blue" android:layout_width="40.0dip" android:layout_height="40.0dip" android:layout_marginTop="11.0dip" android:src="@drawable/ic_autorenew_black_24dp" android:tint="#ffffffff" android:layout_toRightOf="@id/activity_starterButtonMain" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center_horizontal" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <TextView android:textStyle="bold" android:textColor="#ff00baff" android:id="@id/activity_mainAutorText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="CONECTA4G" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center_horizontal" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="30.0dip">
+            <TextView android:textStyle="bold" android:textColor="@color/black" android:id="@id/Vencimento" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center_horizontal" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <TextView android:textStyle="bold" android:textColor="@color/black" android:id="@id/dias_check" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+        </LinearLayout>
+        <LinearLayout android:gravity="center_horizontal" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <TextView android:textStyle="bold" android:textColor="@color/black" android:id="@id/limite_user" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

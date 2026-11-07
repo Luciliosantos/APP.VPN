@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_gravity="center|top" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:gravity="center|top" android:orientation="vertical" android:padding="10.0dip" android:focusable="true" android:focusableInTouchMode="true" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="5.0dip">
+            <TextView android:textStyle="bold" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/proxy_remote" />
+            <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputEditText android:textColor="@color/colorText" android:id="@id/fragment_proxy_remoteProxyIpEdit" android:layout_width="wrap_content" android:layout_height="wrap_content" android:hint="@string/proxy_ip" android:ems="9" android:singleLine="true" android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputEditText android:textColor="@color/colorText" android:id="@id/fragment_proxy_remoteProxyPortaEdit" android:layout_width="wrap_content" android:layout_height="wrap_content" android:hint="@string/proxy_port" android:ems="4" android:singleLine="true" android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="5.0dip">
+            <androidx.appcompat.widget.AppCompatCheckBox android:textColor="@color/colorText" android:id="@id/fragment_proxy_remoteUsarAutenticacaoCheck" android:layout_width="fill_parent" android:layout_height="wrap_content" android:hint="@string/proxy_auth" />
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:id="@id/fragment_proxy_remoteAutenticacaoLinearLayout" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <com.google.android.material.textfield.TextInputLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText android:textColor="@color/colorText" android:id="@id/fragment_proxy_remoteAutenticacaoUsuarioEdit" android:layout_width="wrap_content" android:layout_height="wrap_content" android:hint="@string/proxy_user" android:ems="7" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText android:textColor="@color/colorText" android:id="@id/fragment_proxy_remoteAutenticacaoSenhaEdit" android:layout_width="wrap_content" android:layout_height="wrap_content" android:hint="@string/proxy_pass" android:ems="7" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+        <LinearLayout android:gravity="right" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dip">
+            <Button android:id="@id/fragment_proxy_remoteCancelButton" android:background="@android:color/transparent" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/cancel" />
+            <Button android:id="@id/fragment_proxy_remoteSaveButton" android:background="@android:color/transparent" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/save" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

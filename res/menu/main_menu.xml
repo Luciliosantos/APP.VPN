@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:icon="@drawable/ic_settings" android:id="@id/miSettings" android:title="@string/settings" app:showAsAction="always" />
+    <item android:icon="@drawable/ic_cloud_download" android:id="@id/configUpdate" android:title="Atualizar Aplicativo" app:showAsAction="always" />
+    <item android:id="@id/miLimparConfig" android:title="Restaurar" />
+    <item android:id="@id/miExit" android:title="@string/exit" />
+</menu>

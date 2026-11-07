@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:id="@id/ivManagerAdapter_ItemLayout" android:background="?selectableItemBackground" android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <ImageView android:id="@id/ivManagerAdapter_ImageIcon" android:layout_width="50.0dip" android:layout_height="50.0dip" android:layout_marginTop="3.0dip" android:layout_marginBottom="3.0dip" android:layout_marginStart="5.0dip" />
+        <LinearLayout android:gravity="left" android:orientation="vertical" android:id="@id/listitemmanagerLinearLayout1" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_centerInParent="true" android:layout_marginStart="5.0dip" android:layout_toEndOf="@id/ivManagerAdapter_ImageIcon">
+            <TextView android:textSize="16.0sp" android:textColor="@color/colorText" android:id="@id/tvManagerAdapter_FolderName" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" />
+            <TextView android:textSize="12.0sp" android:textColor="@color/colorAccent" android:id="@id/tvManagerAdapter_FolderNameDate" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" />
+        </LinearLayout>
+    </RelativeLayout>
+    <View android:background="#ff747474" android:layout_width="fill_parent" android:layout_height="1.0dip" android:layout_marginTop="3.0dip" />
+</LinearLayout>
