@@ -26,6 +26,9 @@ data class VpnConfig(
     val tlsIp: String?,
     val proxyIp: String?,
     val proxyPort: Int?,
+    val bhttpHost: String?,
+    val bhttpPort: Int?,
+    val bhttpTls: Boolean,
     val raw: JSONObject
 )
 
@@ -65,16 +68,28 @@ object VpnConfigParser {
         val networks = (0 until networksArray.length()).mapNotNull { i ->
             val item = networksArray.optJSONObject(i) ?: return@mapNotNull null
             val info = item.optString("Info").trim()
-            val type = when (info.uppercase()) {
-                "PROXY" -> TransportType.HTTP_PROXY
-                "TLS", "SSL" -> TransportType.TLS
-                "SSH" -> TransportType.SSH
-                "WEBSOCKET", "WS" -> TransportType.WEBSOCKET
-                "BHTTP" -> TransportType.BHTTP
-                "XHTTP" -> TransportType.XHTTP
-                "PAYLOAD" -> TransportType.PAYLOAD
-                else -> if (item.optString("SNI").isNotBlank()) TransportType.TLS else TransportType.UNKNOWN
+            val declaredTransport = listOf("TYPE", "PROTO", "Transport", "Mode").firstNotNullOfOrNull { key ->
+                item.optString(key).takeIf { it.isNotBlank() }
+            }?.uppercase().orEmpty()
+            val infoCode = info.uppercase().replace("_", "").replace("-", "").replace(" ", "")
+            val type = when {
+                infoCode.contains("BHTTP") || declaredTransport.contains("BHTTP") -> TransportType.BHTTP
+                infoCode.contains("XHTTP") || declaredTransport.contains("XHTTP") -> TransportType.XHTTP
+                infoCode == "PROXY" -> TransportType.HTTP_PROXY
+                infoCode in listOf("TLS", "SSL", "TLSWS", "TLS/WS") -> TransportType.TLS
+                infoCode == "SSH" || declaredTransport.contains("SSH") -> TransportType.SSH
+                infoCode in listOf("WEBSOCKET", "WS") -> TransportType.WEBSOCKET
+                infoCode == "PAYLOAD" -> TransportType.PAYLOAD
+                item.optString("SNI").isNotBlank() -> TransportType.TLS
+                else -> TransportType.UNKNOWN
             }
+            val proxyPort = item.optString("ProxyPort").toIntOrNull()?.takeIf { it in 1..65535 }
+            val bhttpHost = item.optString("BHTTPHost").takeIf { it.isNotBlank() }
+                ?: item.optString("ProxyIP").takeIf { it.isNotBlank() }
+                ?: item.optString("TlsIP").takeIf { it.isNotBlank() }
+            val bhttpPort = item.optString("BHTTPPort").toIntOrNull()?.takeIf { it in 1..65535 } ?: proxyPort
+            val bhttpTls = item.optString("BHTTPTLS").lowercase() in listOf("1", "true", "yes")
+                || (item.optString("BHTTPTLS").isBlank() && (bhttpPort == 443 || item.optString("SNI").isNotBlank()))
             VpnConfig(
                 id = "network-$i",
                 name = item.optString("Name", "Conexão " + (i + 1)),
@@ -85,14 +100,18 @@ object VpnConfigParser {
                 sni = item.optString("SNI").takeIf { it.isNotBlank() },
                 tlsIp = item.optString("TlsIP").takeIf { it.isNotBlank() },
                 proxyIp = item.optString("ProxyIP").takeIf { it.isNotBlank() },
-                proxyPort = item.optString("ProxyPort").toIntOrNull()?.takeIf { it in 1..65535 },
+                proxyPort = proxyPort,
+                bhttpHost = bhttpHost,
+                bhttpPort = bhttpPort,
+                bhttpTls = bhttpTls,
                 raw = item
             )
         }
 
-        val udpPorts = (0 until udpArray.length()).mapNotNull { i ->
-            udpArray.optJSONObject(i)?.optString("Porta")?.toIntOrNull()?.takeIf { it in 1..65535 }
-        }.distinct()
+        val udpPorts = (
+            (0 until udpArray.length()).mapNotNull { i -> udpArray.optJSONObject(i)?.optString("Porta")?.toIntOrNull() } +
+            root.optString("UdpPort").split(";", ",", " ").mapNotNull { it.trim().toIntOrNull() }
+        ).filter { it in 1..65535 }.distinct()
 
         if (servers.isEmpty()) throw IllegalArgumentException("Nenhum servidor válido encontrado em Servers")
         if (networks.isEmpty()) throw IllegalArgumentException("Nenhuma conexão válida encontrada em Networks")
@@ -102,7 +121,7 @@ object VpnConfigParser {
             releaseNotes = root.optString("ReleaseNotes").takeIf { it.isNotBlank() },
             smsUrl = root.optString("Sms").takeIf { it.isNotBlank() },
             updateUrl = root.optString("UrlUpdate").takeIf { it.isNotBlank() },
-            checkUser = root.optString("CheckUser", "0") == "1",
+            checkUser = root.optString("CheckUser", "false").lowercase() in listOf("1", "true", "yes"),
             udpPorts = udpPorts,
             servers = servers,
             networks = networks

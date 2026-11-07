@@ -4,3 +4,7 @@ local.properties
 **/build/
 *.jks
 *.keystore
+*.bak.*
+backups/
+dist/
+dtunnel-custom-ui/
