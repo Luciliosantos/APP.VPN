@@ -40,7 +40,7 @@
 
 # virtual methods
 .method public run()V
-    .locals 2
+    .locals 3
 
     .line 1198
     iget-object v0, p0, Lcom/conecta4g/vpn/SocksHttpMainActivity$6;->this$0:Lcom/conecta4g/vpn/SocksHttpMainActivity;
@@ -53,6 +53,33 @@
     move-result v0
 
     if-eqz v0, :cond_6
+    # Start the Beerus scene animation on the screen root while the VPN tunnel is active.
+    iget-object v0, p0, Lcom/conecta4g/vpn/SocksHttpMainActivity$6;->this$0:Lcom/conecta4g/vpn/SocksHttpMainActivity;
+    invoke-static {v0}, Lcom/conecta4g/vpn/SocksHttpMainActivity;->access$1200(Lcom/conecta4g/vpn/SocksHttpMainActivity;)Landroid/widget/TextView;
+    move-result-object v0
+    invoke-virtual {v0}, Landroid/view/View;->getParent()Landroid/view/ViewParent;
+    move-result-object v0
+    check-cast v0, Landroid/view/View;
+    invoke-virtual {v0}, Landroid/view/View;->getParent()Landroid/view/ViewParent;
+    move-result-object v0
+    check-cast v0, Landroid/view/View;
+    invoke-virtual {v0}, Landroid/view/View;->getBackground()Landroid/graphics/drawable/Drawable;
+    move-result-object v0
+    instance-of v1, v0, Landroid/graphics/drawable/AnimationDrawable;
+    if-eqz v1, :cond_scene_started
+    check-cast v0, Landroid/graphics/drawable/AnimationDrawable;
+    invoke-virtual {v0}, Landroid/graphics/drawable/AnimationDrawable;->start()V
+    :cond_scene_started
+    iget-object v0, p0, Lcom/conecta4g/vpn/SocksHttpMainActivity$6;->this$0:Lcom/conecta4g/vpn/SocksHttpMainActivity;
+    invoke-static {v0}, Lcom/conecta4g/vpn/SocksHttpMainActivity;->access$1200(Lcom/conecta4g/vpn/SocksHttpMainActivity;)Landroid/widget/TextView;
+    move-result-object v0
+    invoke-virtual {v0}, Landroid/view/View;->getBackground()Landroid/graphics/drawable/Drawable;
+    move-result-object v0
+    instance-of v1, v0, Landroid/graphics/drawable/AnimationDrawable;
+    if-eqz v1, :cond_anim_started
+    check-cast v0, Landroid/graphics/drawable/AnimationDrawable;
+    invoke-virtual {v0}, Landroid/graphics/drawable/AnimationDrawable;->start()V
+    :cond_anim_started
 
     .line 1201
     iget-object v0, p0, Lcom/conecta4g/vpn/SocksHttpMainActivity$6;->val$level:Lcom/romzkie/ultrasshservice/logger/ConnectionStatus;
@@ -281,5 +308,36 @@
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
     :cond_6
+    # Stop the scene animation when disconnected; frame zero remains as the idle character background.
+    iget-object v0, p0, Lcom/conecta4g/vpn/SocksHttpMainActivity$6;->this$0:Lcom/conecta4g/vpn/SocksHttpMainActivity;
+    invoke-static {v0}, Lcom/conecta4g/vpn/SocksHttpMainActivity;->access$1200(Lcom/conecta4g/vpn/SocksHttpMainActivity;)Landroid/widget/TextView;
+    move-result-object v0
+    invoke-virtual {v0}, Landroid/view/View;->getParent()Landroid/view/ViewParent;
+    move-result-object v0
+    check-cast v0, Landroid/view/View;
+    invoke-virtual {v0}, Landroid/view/View;->getParent()Landroid/view/ViewParent;
+    move-result-object v0
+    check-cast v0, Landroid/view/View;
+    move-object v2, v0
+    invoke-virtual {v0}, Landroid/view/View;->getBackground()Landroid/graphics/drawable/Drawable;
+    move-result-object v0
+    instance-of v1, v0, Landroid/graphics/drawable/AnimationDrawable;
+    if-eqz v1, :cond_scene_stopped
+    check-cast v0, Landroid/graphics/drawable/AnimationDrawable;
+    invoke-virtual {v0}, Landroid/graphics/drawable/AnimationDrawable;->stop()V
+    :cond_scene_stopped
+    # Recreate the scene drawable so idle always returns to frame zero (orb at Beerus's palm).
+    const v0, 0x7f0800ef
+    invoke-virtual {v2, v0}, Landroid/view/View;->setBackgroundResource(I)V
+    iget-object v0, p0, Lcom/conecta4g/vpn/SocksHttpMainActivity$6;->this$0:Lcom/conecta4g/vpn/SocksHttpMainActivity;
+    invoke-static {v0}, Lcom/conecta4g/vpn/SocksHttpMainActivity;->access$1200(Lcom/conecta4g/vpn/SocksHttpMainActivity;)Landroid/widget/TextView;
+    move-result-object v0
+    invoke-virtual {v0}, Landroid/view/View;->getBackground()Landroid/graphics/drawable/Drawable;
+    move-result-object v0
+    instance-of v1, v0, Landroid/graphics/drawable/AnimationDrawable;
+    if-eqz v1, :cond_anim_stopped
+    check-cast v0, Landroid/graphics/drawable/AnimationDrawable;
+    invoke-virtual {v0}, Landroid/graphics/drawable/AnimationDrawable;->stop()V
+    :cond_anim_stopped
     return-void
 .end method

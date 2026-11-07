@@ -1,0 +1,8 @@
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android" android:oneshot="false">
+ <item android:drawable="@drawable/beerus_energy_0" android:duration="150" />
+ <item android:drawable="@drawable/beerus_energy_1" android:duration="150" />
+ <item android:drawable="@drawable/beerus_energy_2" android:duration="150" />
+ <item android:drawable="@drawable/beerus_energy_3" android:duration="150" />
+ <item android:drawable="@drawable/beerus_energy_4" android:duration="150" />
+ <item android:drawable="@drawable/beerus_energy_5" android:duration="150" />
+</animation-list>
