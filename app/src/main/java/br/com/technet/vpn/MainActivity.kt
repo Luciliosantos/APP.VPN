@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import br.com.technet.vpn.data.ConfigRepository
 import br.com.technet.vpn.data.BHttpProtocol
 import br.com.technet.vpn.data.VpnConfig
 import br.com.technet.vpn.data.VpnConfigParser
@@ -43,20 +44,41 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            var profile by remember { mutableStateOf<VpnProfile?>(null) }
-            var selected by remember { mutableStateOf<String?>(null) }
+            var profile by remember { mutableStateOf<VpnProfile?>(runCatching { ConfigRepository.cached(this@MainActivity)?.let { VpnConfigParser.parse(it) } }.getOrNull()) }
+            var selected by remember { mutableStateOf<String?>(profile?.networks?.firstOrNull()?.id) }
             var page by remember { mutableStateOf("INÍCIO") }
             var query by remember { mutableStateOf("") }
             var carrier by remember { mutableStateOf("TODAS") }
-            var message by remember { mutableStateOf("Importe seu config.json para carregar os perfis.") }
+            var message by remember { mutableStateOf(if (profile == null) "Buscando configuração online..." else "Configuração salva • " + profile!!.networks.size + " conexões") }
+            var updatingConfig by remember { mutableStateOf(false) }
             var bhttpMessage by remember { mutableStateOf<String?>(null) }
             var bhttpTesting by remember { mutableStateOf(false) }
             val scope = rememberCoroutineScope()
             importHandler = { raw ->
                 runCatching { VpnConfigParser.parse(raw) }
-                    .onSuccess { p -> profile = p; selected = p.networks.firstOrNull()?.id; message = "Versão " + p.version + " • " + p.networks.size + " conexões carregadas" }
-                    .onFailure { e -> message = "Erro no JSON: " + (e.message ?: "arquivo inválido") }
+                    .onSuccess { p -> ConfigRepository.save(this@MainActivity, raw); profile = p; selected = p.networks.firstOrNull()?.id; message = "Versão " + p.version + " • " + p.networks.size + " conexões carregadas" }
+                    .onFailure { e -> message = "Erro na configuração: " + (e.message ?: "arquivo inválido") }
             }
+            val refreshConfig: () -> Unit = {
+                if (!updatingConfig) {
+                    updatingConfig = true
+                    message = "Consultando URL de atualização..."
+                    scope.launch {
+                        try {
+                            val url = profile?.updateUrl?.takeIf { it.startsWith("https://") } ?: ConfigRepository.DEFAULT_CONFIG_URL
+                            val raw = withContext(Dispatchers.IO) { ConfigRepository.download(url) }
+                            val fresh = VpnConfigParser.parse(raw)
+                            ConfigRepository.save(this@MainActivity, raw)
+                            profile = fresh
+                            if (selected == null || fresh.networks.none { it.id == selected }) selected = fresh.networks.firstOrNull()?.id
+                            message = "Atualizado pela internet • v" + fresh.version + " • " + fresh.networks.size + " perfis"
+                        } catch (e: Exception) {
+                            message = "Falha ao atualizar: " + (e.message ?: "sem conexão") + if (profile != null) " • usando configuração salva" else ""
+                        } finally { updatingConfig = false }
+                    }
+                }
+            }
+            LaunchedEffect(Unit) { refreshConfig() }
             val all = profile?.networks.orEmpty()
             val filtered = all.filter { c ->
                 (carrier == "TODAS" || (c.flag ?: "").contains(carrier, true)) &&
@@ -176,7 +198,8 @@ class MainActivity : ComponentActivity() {
                                     }
                                     Text("CONFIGURAÇÃO", color = Color.White, fontWeight = FontWeight.Bold)
                                     Text(message, color = MUTED, style = MaterialTheme.typography.bodySmall)
-                                    OutlinedButton(onClick = { picker.launch(arrayOf("application/json", "text/*", "application/octet-stream")) }, Modifier.fillMaxWidth(), shape = RoundedCornerShape(12.dp)) { Text("IMPORTAR CONFIG.JSON") }
+                                    Button(onClick = refreshConfig, enabled = !updatingConfig, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(12.dp), colors = ButtonDefaults.buttonColors(containerColor = BLUE)) { Text(if (updatingConfig) "ATUALIZANDO CONFIGURAÇÃO..." else "ATUALIZAR CONFIGURAÇÃO ONLINE", color = BG, fontWeight = FontWeight.Black) }
+                                    OutlinedButton(onClick = { picker.launch(arrayOf("application/json", "text/*", "application/octet-stream")) }, Modifier.fillMaxWidth(), shape = RoundedCornerShape(12.dp)) { Text("IMPORTAR JSON MANUALMENTE") }
                                     Spacer(Modifier.weight(1f))
                                     Text("TECH NET VPN  •  CENTRAL DE REDE", color = Color(0xFF52647C), style = MaterialTheme.typography.labelSmall)
                                 }
