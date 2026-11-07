@@ -114,6 +114,10 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(I)V
 
+    const-string v1, "VPN"
+
+    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+
     .line 1209
     :cond_0
     iget-object v0, p0, Lcom/conecta4g/vpn/SocksHttpMainActivity$6;->val$level:Lcom/romzkie/ultrasshservice/logger/ConnectionStatus;
@@ -136,6 +140,10 @@
     const v1, 0x7f0f00b2
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(I)V
+
+    const-string v1, "VPN"
+
+    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
     .line 1212
     :cond_1
@@ -160,6 +168,10 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(I)V
 
+    const-string v1, "VPN"
+
+    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+
     .line 1215
     :cond_2
     iget-object v0, p0, Lcom/conecta4g/vpn/SocksHttpMainActivity$6;->val$level:Lcom/romzkie/ultrasshservice/logger/ConnectionStatus;
@@ -182,6 +194,10 @@
     const v1, 0x7f0f0056
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(I)V
+
+    const-string v1, "VPN"
+
+    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
     .line 1218
     :cond_3
@@ -206,6 +222,10 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(I)V
 
+    const-string v1, "VPN"
+
+    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+
     .line 1221
     :cond_4
     iget-object v0, p0, Lcom/conecta4g/vpn/SocksHttpMainActivity$6;->val$level:Lcom/romzkie/ultrasshservice/logger/ConnectionStatus;
@@ -229,6 +249,10 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(I)V
 
+    const-string v1, "VPN"
+
+    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+
     .line 1224
     :cond_5
     iget-object v0, p0, Lcom/conecta4g/vpn/SocksHttpMainActivity$6;->val$level:Lcom/romzkie/ultrasshservice/logger/ConnectionStatus;
@@ -251,6 +275,10 @@
     const v1, 0x7f0f0096
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(I)V
+
+    const-string v1, "VPN"
+
+    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
     :cond_6
     return-void
